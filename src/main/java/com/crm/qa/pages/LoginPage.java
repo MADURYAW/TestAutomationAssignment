@@ -16,17 +16,17 @@ public class LoginPage extends TestBase{
 	@FindBy(name="username")
 	WebElement username;
 	
-	@FindBy(name="password")
+	@FindBy(name="pwd")
 	WebElement password;
 	
-	@FindBy(xpath="//input[@type='submit']")
+	@FindBy(id="loginButton")
 	WebElement loginBtn;
 	
 	@FindBy(xpath="//button[contains(text(),'Sign Up')]")
 	WebElement signUpBtn;
 	
-	@FindBy(xpath="//img[contains(@class,'img-responsive')]")
-	WebElement crmLogo;
+	@FindBy(xpath="//div[@class='atLogoImg']")
+	WebElement logo;
 	
 	//Initializing the Page Objects:
 	public LoginPage(){
@@ -38,8 +38,8 @@ public class LoginPage extends TestBase{
 		return driver.getTitle();
 	}
 	
-	public boolean validateCRMImage(){
-		return crmLogo.isDisplayed();
+	public boolean validateLogoImage(){
+		return logo.isDisplayed();
 	}
 	
 	public HomePage login(String un, String pwd){

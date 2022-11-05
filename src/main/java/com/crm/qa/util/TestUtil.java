@@ -17,7 +17,7 @@ import com.crm.qa.base.TestBase;
 
 public class TestUtil extends TestBase{
 	
-	public static long PAGE_LOAD_TIMEOUT = 20;
+	public static long PAGE_LOAD_TIMEOUT = 200;
 	public static long IMPLICIT_WAIT = 20;
 	
 	public static String TESTDATA_SHEET_PATH = "/Users/naveenkhunteta/Documents/workspace"

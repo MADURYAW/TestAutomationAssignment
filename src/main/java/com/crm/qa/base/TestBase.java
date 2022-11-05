@@ -41,11 +41,15 @@ public class TestBase {
 		String browserName = prop.getProperty("browser");
 		
 		if(browserName.equals("chrome")){
-			System.setProperty("webdriver.chrome.driver", "/Users/naveenkhunteta/Downloads/chromedriver");	
+			String path = System.getProperty("user.dir");
+			System.out.println("Path : "+path);
+			System.setProperty("webdriver.chrome.driver", path+"/src/main/java/com/crm/qa/config/drivers/chromedriver");
 			driver = new ChromeDriver(); 
 		}
 		else if(browserName.equals("FF")){
-			System.setProperty("webdriver.gecko.driver", "/Users/naveenkhunteta/Documents/SeleniumServer/geckodriver");	
+			String path = System.getProperty("user.dir");
+			System.out.println("Path : "+path);
+			System.setProperty("webdriver.gecko.driver", path+"/src/main/java/com/crm/qa/config/drivers/geckodriver");
 			driver = new FirefoxDriver(); 
 		}
 		
