@@ -10,20 +10,23 @@ import com.crm.qa.base.TestBase;
 
 public class UsersPage extends TestBase {
 
-	@FindBy(xpath = "//td[contains(text(),'Contacts')]")
-	WebElement contactsLabel;
+	@FindBy(xpath = "//span[contains(text(),'List of Users')]")
+	WebElement usersLabel;
 	
-	@FindBy(id="first_name")
+	@FindBy(id="editUserPanel_firstNameField")
 	WebElement firstName;
 	
-	@FindBy(id="surname")
+	@FindBy(id="createUserPanel_lastNameField")
 	WebElement lastName;
 	
-	@FindBy(name="client_lookup")
-	WebElement company;
+	@FindBy(id="createUserPanel_emailField")
+	WebElement mail;
 	
-	@FindBy(xpath = "//input[@type='submit' and @value='Save']")
+	@FindBy(xpath = "//div[contains(text(),'Save & Send Invitation')]")
 	WebElement saveBtn;
+
+	@FindBy(xpath = "//div[contains(text(),'New User')]")
+	WebElement btnNewUser;
 	
 	
 	
@@ -33,24 +36,26 @@ public class UsersPage extends TestBase {
 	}
 	
 	
-	public boolean verifyContactsLabel(){
-		return contactsLabel.isDisplayed();
+	public boolean verifyUsersLabel(){
+		return usersLabel.isDisplayed();
 	}
 	
 	
-	public void selectContactsByName(String name){
+	public void selectUsersByName(String name){
 		driver.findElement(By.xpath("//a[text()='"+name+"']//parent::td[@class='datalistrow']"
 				+ "//preceding-sibling::td[@class='datalistrow']//input[@name='contact_id']")).click();
 	}
 	
 	
-	public void createNewContact(String title, String ftName, String ltName, String comp){
-		Select select = new Select(driver.findElement(By.name("title")));
-		select.selectByVisibleText(title);
-		
+	public void createNewUser(String ftName, String ltName, String email){
+		//Select select = new Select(driver.findElement(By.name("title")));
+		//select.selectByVisibleText(title);
+
+		btnNewUser.click();
+
 		firstName.sendKeys(ftName);
 		lastName.sendKeys(ltName);
-		company.sendKeys(comp);
+		mail.sendKeys(email);
 		saveBtn.click();
 		
 	}

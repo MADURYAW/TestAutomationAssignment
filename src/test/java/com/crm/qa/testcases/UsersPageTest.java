@@ -17,14 +17,16 @@ import com.crm.qa.pages.HomePage;
 import com.crm.qa.pages.LoginPage;
 import com.crm.qa.util.TestUtil;
 
+import static java.lang.Thread.sleep;
+
 public class UsersPageTest extends TestBase{
 
 	LoginPage loginPage;
 	HomePage homePage;
 	TestUtil testUtil;
-	UsersPage contactsPage;
+	UsersPage usersPage;
 	
-	String sheetName = "contacts";
+	String sheetName = "users";
 	
 	   
 	public UsersPageTest(){
@@ -34,31 +36,36 @@ public class UsersPageTest extends TestBase{
 	
 	//This is a @BeforeMethod
 	@BeforeMethod
-	public void setUp() {
+	public void setUp() throws InterruptedException {
 		
 		initialization();
 		testUtil = new TestUtil();
-		contactsPage = new UsersPage();
+		usersPage = new UsersPage();
 		loginPage = new LoginPage();
-		homePage = loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
-		testUtil.switchToFrame();
-		contactsPage = homePage.clickOnUsersLink();
+		homePage = loginPage.login(prop.getProperty("adminName"), prop.getProperty("adminPassword"));
+		sleep(1000);
+		Assert.assertTrue(homePage.verifyCorrectUserName());
+		//testUtil.switchToFrame();
+		usersPage = homePage.clickOnUsersLink();
+		sleep(2000);
+		usersPage.verifyUsersLabel();
 	}
 	
-	@Test(priority=1,enabled = false)
-	public void verifyContactsPageLabel(){
-		Assert.assertTrue(contactsPage.verifyContactsLabel(), "contacts label is missing on the page");
+	@Test(priority=1,enabled = true)
+	public void verifyUsersPageLabel(){
+		log.debug("title : "+driver.getTitle());
+		Assert.assertTrue(usersPage.verifyUsersLabel(), "List of Users, label is missing on the page");
 	}
 	
 	@Test(priority=2,enabled = false)
-	public void selectSingleContactsTest(){
-		contactsPage.selectContactsByName("test2 test2");
+	public void selectSingleUserTest(){
+		usersPage.selectUsersByName("test2 test2");
 	}
 	
 	@Test(priority=3,enabled = false)
-	public void selectMultipleContactsTest(){
-		contactsPage.selectContactsByName("test2 test2");
-		contactsPage.selectContactsByName("ui uiii");
+	public void selectMultipleUsersTest(){
+		usersPage.selectUsersByName("user1 user2");
+		usersPage.selectUsersByName("ui uiii");
 
 	}
 	
@@ -69,11 +76,9 @@ public class UsersPageTest extends TestBase{
 	}
 	
 	
-	@Test(priority=4, dataProvider="getCRMTestData",enabled = false)
-	public void validateCreateNewContact(String title, String firstName, String lastName, String company){
-		homePage.clickOnNewContactLink();
-		//contactsPage.createNewContact("Mr.", "Tom", "Peter", "Google");
-		contactsPage.createNewContact(title, firstName, lastName, company);
+	@Test(priority=4, dataProvider="getCRMTestData",enabled = true)
+	public void validateCreateNewContact(String firstName, String lastName, String email){
+		usersPage.createNewUser(firstName, lastName, email);
 		
 	}
 	

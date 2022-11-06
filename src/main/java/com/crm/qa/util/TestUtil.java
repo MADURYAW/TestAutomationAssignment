@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import org.apache.log4j.Logger;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -19,9 +20,9 @@ public class TestUtil extends TestBase{
 	
 	public static long PAGE_LOAD_TIMEOUT = 200;
 	public static long IMPLICIT_WAIT = 20;
-	
-	public static String TESTDATA_SHEET_PATH = "/Users/naveenkhunteta/Documents/workspace"
-			+ "/FreeCRMTest/src/main/java/com/crm/qa/testdata/FreeCrmTestData.xlsx";
+	static String path = System.getProperty("user.dir");
+	public static String TESTDATA_SHEET_PATH = path+"/src/main/java/com/crm/qa/testdata/ActitimeTestData.xlsx";
+
 	
 	static Workbook book;
 	static Sheet sheet;
@@ -32,6 +33,7 @@ public class TestUtil extends TestBase{
 	}
 	
 	public static Object[][] getTestData(String sheetName) {
+		System.out.println("TESTDATA_SHEET_PATH : "+TESTDATA_SHEET_PATH);
 		FileInputStream file = null;
 		try {
 			file = new FileInputStream(TESTDATA_SHEET_PATH);

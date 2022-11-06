@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
+import org.apache.log4j.Logger;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -22,6 +23,7 @@ public class TestBase {
 	public static Properties prop;
 	public  static EventFiringWebDriver e_driver;
 	public static WebEventListener eventListener;
+	public static Logger log = Logger.getLogger("devpinoyLogger");
 	
 	public TestBase(){
 		try {
@@ -42,13 +44,13 @@ public class TestBase {
 		
 		if(browserName.equals("chrome")){
 			String path = System.getProperty("user.dir");
-			System.out.println("Path : "+path);
+			log.debug("path : "+path+"/src/main/java/com/crm/qa/config/drivers/chromedriver");
 			System.setProperty("webdriver.chrome.driver", path+"/src/main/java/com/crm/qa/config/drivers/chromedriver");
 			driver = new ChromeDriver(); 
 		}
 		else if(browserName.equals("FF")){
 			String path = System.getProperty("user.dir");
-			System.out.println("Path : "+path);
+			//System.out.println("Path : "+path);
 			System.setProperty("webdriver.gecko.driver", path+"/src/main/java/com/crm/qa/config/drivers/geckodriver");
 			driver = new FirefoxDriver(); 
 		}

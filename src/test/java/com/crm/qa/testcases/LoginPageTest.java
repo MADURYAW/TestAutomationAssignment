@@ -26,6 +26,7 @@ public class LoginPageTest extends TestBase{
 	@Test(priority=1,enabled = true)
 	public void loginPageTitleTest(){
 		String title = loginPage.validateLoginPageTitle();
+		log.debug("title : "+title);
 		Assert.assertEquals(title, "actiTIME - Login");
 	}
 	
