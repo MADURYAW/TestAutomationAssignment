@@ -1,4 +1,7 @@
 # Test Automation Assignment : https://demo.actitime.com/
+
+Mind Map added, Please check https://github.com/MADURYAW/TestAutomationAssignment/blob/master/Mind_Map.jpeg
+
 I have used Java programming, TestNG, Selenium, Maven build tool, Excel Data Driven, Page Object Model Design , Extent Reports and log4j technologies.
 The automation framework and script level accuracy, stability and functioning has been tested and verified against firefox browser in macOS.
 
