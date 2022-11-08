@@ -30,4 +30,6 @@ Test framework structure :
 View the report :
 <img width="1440" alt="image" src="https://user-images.githubusercontent.com/114944103/200183714-ee119c24-67f5-44f4-8e75-ec984e62ad45.png">
 
+Refred and supported channels :
 
+https://github.com/Ranjithkanoj24/PageObjectModel
